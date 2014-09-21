@@ -30,8 +30,8 @@ room.on('names', function(list){
 room.on('join', function(nick){
 	tracking.watchUser(nick)
 	.then(function(doc){
-		if(gameloop.running){
-			//sendMessage(config.messages.welcome, _.extend({}, {name:config.name}, doc), 'action');
+		if(gameloop.running && config.messages.welcome){
+			sendMessage(config.messages.welcome, _.extend({}, {name:config.name}, doc), 'action');
 		}
 	});
 });
@@ -57,7 +57,7 @@ gameloop.on('tick', function(diff){
 
 
 tracking.on('new.user', function(doc){
-	if(gameloop.running){
+	if(gameloop.running && config.messages.newuser){
 		sendMessage(config.messages.newuser, doc, 'action');
 	}
 });
@@ -69,7 +69,7 @@ tracking.on('levelup', function(user){
 
 
 followers.on('follow', function(user, gift){
-	if(gameloop.running){
+	if(gameloop.running && config.messages.newfollow){
 		sendMessage(config.messages.newfollow, _.extend({gift:gift}, user));
 	}	
 });

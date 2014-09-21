@@ -91,6 +91,7 @@ Tracking.prototype.watchUsers = function(list){
 
 Tracking.prototype.watchUser = function(nick){
 	var self = this;
+	nick = nick.toLowerCase();
 	var deferred = q.defer();
 	// make sure user isn't already in the watch list
 	if(self.isWatchingUser(nick)){
@@ -139,6 +140,7 @@ Tracking.prototype._findOne = function(query, cb){
 
 Tracking.prototype.unwatchUser = function(nick){
 	var self = this;
+	nick = nick.toLowerCase();
 	// save the user
 	self.saveUser(nick);
 	// remove from users list
@@ -147,6 +149,7 @@ Tracking.prototype.unwatchUser = function(nick){
 
 Tracking.prototype.saveUser = function(nick){
 	var self = this;
+	nick = nick.toLowerCase();
 	// save the user
 	var user = self.getUser(nick);
 	self.db.update({_id:nick}, user);
@@ -156,6 +159,7 @@ Tracking.prototype.saveUser = function(nick){
 // forces a record update, even if the user isn't tracked
 Tracking.prototype.updateUser = function(nick, prop, value){
 	var self = this;
+	nick = nick.toLowerCase();
 	// make sure it's a changable value
 	if(userSchema[prop] === undefined){
 		return false;
@@ -178,6 +182,7 @@ Tracking.prototype.updateUser = function(nick, prop, value){
 
 Tracking.prototype.viewUser = function(nick, cb){
 	var self = this;
+	nick = nick.toLowerCase();
 	// save the user if tracked
 	var user = self.getUser(nick);
 	//console.log('user', user);
@@ -203,6 +208,7 @@ Tracking.prototype.saveAllUsers = function(){
 
 Tracking.prototype.isWatchingUser = function(nick){
 	var self = this;
+	nick = nick.toLowerCase();
 	var doc = self.users[nick];
 	var result = doc ? true : false;
 	//console.log('isWatchingUser', nick, result);
@@ -211,11 +217,13 @@ Tracking.prototype.isWatchingUser = function(nick){
 
 Tracking.prototype.getUser = function(nick){
 	var self = this;
+	nick = nick.toLowerCase();
 	return self.users[nick];
 };
 
 Tracking.prototype.addUser = function(nick, overrides, cb){
 	cb = cb || function(){};
+	nick = nick.toLowerCase();
 	var self = this;
 	var doc = _.extend({
 		_id:nick,
@@ -242,6 +250,7 @@ Tracking.prototype.adjustMegabots = function(nick, amount){
 
 // adjusts prop, will create a new record if doesn;t exist
 Tracking.prototype._adjust = function(nick, prop, amount){
+	nick = nick.toLowerCase();
 	var self = this;
 	var deferred = q.defer();
 	// save the user if tracked
@@ -253,7 +262,9 @@ Tracking.prototype._adjust = function(nick, prop, amount){
 		self._findOne({_id:nick}, function(err, doc){
 			if(doc){
 				doc[prop] += amount;
-				self.db.update({_id:nick}, doc);
+				self.db.update({_id:nick}, doc, {}, function(e, o){
+
+				});
 				deferred.resolve(doc);
 			}else{
 				var obj = {};
@@ -262,9 +273,7 @@ Tracking.prototype._adjust = function(nick, prop, amount){
 					if(err){
 						return deferred.reject(err);
 					}
-					self.users[newUserDoc._id] = newUserDoc;
-					self.emit('new.user', newUserDoc);
-					deferred.resolve(doc);
+					deferred.resolve(newUserDoc);
 				});
 			}
 		});
@@ -274,7 +283,7 @@ Tracking.prototype._adjust = function(nick, prop, amount){
 
 
 
-Tracking.prototype.compact = function(nick){
+Tracking.prototype.compact = function(){
 	var self = this;
 	self.saveAllUsers();
 	self.db.persistence.compactDatafile();

@@ -202,6 +202,8 @@ UserCommands.prototype.command_level = function(cmd){
 UserCommands.prototype.command_nanobots = function(cmd, action, amount, who){
 	var user, template;
 
+
+
 	// !nanobots
 	if(!action){
 		user = this.tracking.getUser(cmd.user.username);
@@ -225,6 +227,26 @@ UserCommands.prototype.command_nanobots = function(cmd, action, amount, who){
 	// we have action so only admis allowed
 	if(action && amount && who && _.contains(this.admins, cmd.user.username)){
 		var amount = +amount;
+
+		if(who === 'all'){
+			if(!isNaN(amount)){
+				var users = this.tracking.users;
+				_.forEach(users, function(user){
+					if(action === 'add'){
+						template = _.template('<%= amount %> nanobots for everyone!');
+						user.nanobots = user.nanobots + amount;
+					}else if(action === 'rm'){
+						template = _.template('<%= amount %> nanobots removed for all');
+						user.nanobots = user.nanobots - amount;
+					}
+				});
+				this.room.say(template(_.extend({
+					amount:amount
+				})));
+			}
+			return;
+		}
+
 		user = this.tracking.getUser(who);
 		if(!user || isNaN(amount)){
 			return;
@@ -287,7 +309,7 @@ UserCommands.prototype.command_megabots = function(cmd, action, amount, who){
 	if(action && amount === undefined && _.contains(this.admins, cmd.user.username)){
 		user = this.tracking.getUser(action);
 		if(user){
-			template = _.template('nanobots: <%= nick %> - <%= nanobots %>');
+			template = _.template('megabots: <%= nick %> - <%= megabots %>');
 			this.room.say(template(user));
 			return;
 		}
@@ -297,6 +319,28 @@ UserCommands.prototype.command_megabots = function(cmd, action, amount, who){
 	// we have action so only admis allowed
 	if(action && amount && who && _.contains(this.admins, cmd.user.username)){
 		var amount = +amount;
+
+
+		if(who === 'all'){
+			if(!isNaN(amount)){
+				
+				var users = this.tracking.users;
+				_.forEach(users, function(user){
+					if(action === 'add'){
+						template = _.template('<%= amount %> megabots for everyone!');
+						user.megabots = user.megabots + amount;
+					}else if(action === 'rm'){
+						template = _.template('<%= amount %> megabots removed for all');
+						user.megabots = user.megabots - amount;
+					}
+				});
+				this.room.say(template(_.extend({
+					amount:amount
+				})));
+			}
+			return;
+		}
+
 		user = this.tracking.getUser(who);
 		if(!user || isNaN(amount)){
 			return;

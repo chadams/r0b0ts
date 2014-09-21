@@ -140,7 +140,7 @@ var globalCommands = {
 		tracking.saveAllUsers();
 		tracking.compact();
 		return 'Saved users data';
-	}
+	},
 	stats: function(){
 		var data = {running:gameloop.running, users:tracking.numUsers(), nanobot_adjust:tracking.nanobot_adjust, megabot_adjust:tracking.megabot_adjust};		
 		return data;

@@ -1,6 +1,9 @@
 r0b0ts
 ======
 
+
+[https://github.com/chadams/r0b0ts](https://github.com/chadams/r0b0ts)
+
 Basic command list for app:
 
  * __start__ giving bots

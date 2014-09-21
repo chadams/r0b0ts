@@ -138,12 +138,9 @@ var globalCommands = {
 	},
 	save: function(){
 		tracking.saveAllUsers();
-		return 'Saved users data';
-	},
-	compact: function(){
 		tracking.compact();
-		return 'database compacted';
-	},
+		return 'Saved users data';
+	}
 	stats: function(){
 		var data = {running:gameloop.running, users:tracking.numUsers(), nanobot_adjust:tracking.nanobot_adjust, megabot_adjust:tracking.megabot_adjust};		
 		return data;

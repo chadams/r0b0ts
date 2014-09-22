@@ -54,8 +54,7 @@ Tracking.prototype.tick = function(diff){
 
 		// adjust rate based off subscription
 		if(subscription_level){
-			nb_rate = nb_rate - Math.round(nb_rate * subscription_level.rate);
-			mb_rate = mb_rate - Math.round(mb_rate * subscription_level.rate);
+			mb_rate = Math.round(mb_rate * subscription_level.rate);
 		}
 
 

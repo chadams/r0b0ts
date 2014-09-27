@@ -15,6 +15,9 @@
 		"filename":"datafile.db",
 		"minToSave":5
 	},
+	"_server":{
+		"port":1337
+	},
 	"contests":{
 		"filename":"contests.db",
 		"defaultTicketCost":10

@@ -20,12 +20,13 @@
 		"defaultTicketCost":10
 	},
 	"settings":{
-		"newFollowNanobots":100
+		"newFollowNanobots":100,
+		"delay":6
 	},
 	"commands":{
 		"!toaster":{
 			"response":"<%= nick %> the <%= title %> says, \"Ding!\"",
-			"minLevel":1
+			"minMegabotLevel":1
 		},
 		"!roomba":{
 			"response":"<%= nick %> the <%= title %> says, \"Out of my way!\"",

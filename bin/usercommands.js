@@ -70,7 +70,13 @@ UserCommands.prototype._runCustomFunction = function(funName, cmd, val1, val2, v
 	if(command){
 		// check level
 		if(command.minLevel !== undefined && command.minLevel !== null){
-			if(user.megabots < command.minLevel || (!_.contains(this.admins, cmd.user.username) && command.adminOnly)){
+			if(user.level < command.minLevel || (!_.contains(this.admins, cmd.user.username) && command.adminOnly)){
+				//console.log('no access to command', user.level, command.level, _.contains(this.admins, cmd.user.username));
+				return; // no access to command
+			}
+		}
+		if(command.minMegabotLevel !== undefined && command.minMegabotLevel !== null){
+			if(user.megabots < command.minMegabotLevel || (!_.contains(this.admins, cmd.user.username) && command.adminOnly)){
 				//console.log('no access to command', user.level, command.level, _.contains(this.admins, cmd.user.username));
 				return; // no access to command
 			}

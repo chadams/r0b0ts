@@ -12,6 +12,7 @@ var userSchema = {
 	megabots:0,
 	mega_rate:60, // in minutes
 	subscription:0, // in dollars
+	time:0, // the tick time
 	level:0,
 };
 
@@ -40,6 +41,8 @@ Tracking.prototype.tick = function(diff){
 	var min = sec * 60;
 	_.forEach(self.users, function(user){
 
+		user.time++;
+
 		var subscription_level = null;
 		if(user.subscription >= 0){
 			_.forEach(self.config.subscriptionLevels, function(s_level, name){
@@ -59,10 +62,10 @@ Tracking.prototype.tick = function(diff){
 
 
 
-		if(diff % nb_rate === 0){
+		if(user.time % nb_rate === 0){
 			user.nanobots++;
 		}
-		if(diff % mb_rate === 0){
+		if(user.time % mb_rate === 0){
 			user.megabots++;
 			// see if anyone gained a level
 			_.forEach(self.config.megabotLevels, function(val, indx){
@@ -196,12 +199,10 @@ Tracking.prototype.viewUser = function(nick, cb){
 };
 
 
-Tracking.prototype.saveAllUsers = function(){
+Tracking.prototype.saveAllUsers = function(cb){
 	var self = this;
 	_.forEach(self.users, function(doc){
-		self.db.update({_id:doc._id}, doc, {}, function(err, data){
-			//console.log(err, data);
-		});
+		self.db.update({_id:doc._id}, doc, {}, cb);
 	});
 };
 
@@ -282,10 +283,17 @@ Tracking.prototype._adjust = function(nick, prop, amount){
 
 
 
-Tracking.prototype.compact = function(){
+Tracking.prototype.compact = function(cb){
 	var self = this;
-	self.saveAllUsers();
-	self.db.persistence.compactDatafile();
+	self.saveAllUsers(function(err, res){
+		self.db.persistence.compactDatafile();
+		if(cb){
+			setTimeout(function(){
+				cb(null, null)
+			}, 1000);
+		}
+	});
+	
 };
 
 

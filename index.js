@@ -117,14 +117,34 @@ var makeMessage = function(templateString, data){
 var sendMessage = function(templateString, data, type){
 	if(!type){type = 'say';}// say | action
 	var out = makeMessage(templateString, data);
-	room[type](out);	
+	if(data.delay){
+		setTimeout(function(){
+			room[type](out);
+		}, data.delay*1000);
+	}else{
+		room[type](out);
+	}
+		
 	return out;
+};
+
+
+var exitApplication = function(){
+  var msg = "Gracefully shutting down";
+	tracking.compact(function(){
+		console.log("Saved Data");
+		process.exit( );
+	});  
+  return msg;
 };
 
 var globalCommands = {
 	help: function(){
 		return 'help doc';
 	},
+	exit: function(){
+	  return exitApplication();
+	},	
 	start:function(){
 		gameloop.start();
 		followers.start();
@@ -136,8 +156,13 @@ var globalCommands = {
 		followers.stop();
 		return 'Engine Stopped';
 	},
+	// for updating settings
+	set: function(prop, value){
+		value = isNaN(+value) ? value : +value;
+		config.settings[prop] = value;
+		return ['set', prop, '=', value].join(' ');
+	},
 	save: function(){
-		tracking.saveAllUsers();
 		tracking.compact();
 		return 'Saved users data';
 	},
@@ -188,6 +213,7 @@ var globalCommands = {
 			}
 			user.nanobots = user.nanobots + amount;
 			var data = _.extend({amount:amount}, user);
+			data.delay = config.settings.delay;
 			return sendMessage('WINNER! <%= nick %>, you just won <%= amount %> nanobots!', data);
 		}
 		return 'start stop clear draw status';
@@ -226,6 +252,7 @@ var globalCommands = {
 			}
 			ticketing.saveAsWinner(winner);
 			var data = _.extend({}, user);
+			data.delay = config.settings.delay;
 			return sendMessage('WINNER! <%= nick %>, you just won the contest!', data);
 		}
 		if(cmd === 'test'){
@@ -300,6 +327,7 @@ var replServer = repl.start({
 });
 
 //replServer.context.val
+
 
 
 

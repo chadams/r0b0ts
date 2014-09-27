@@ -1,5 +1,8 @@
 var config = require('./config');
 var repl = require('repl');
+var app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 var _ = require('lodash');
 var GameLoop = require('./bin/gameloop');
 var Room = require('./bin/room');
@@ -328,6 +331,28 @@ var replServer = repl.start({
 
 //replServer.context.val
 
+
+
+if(config.server && config.server.port){
+	var port = config.server.port;
+
+	app.get('/', function(req, res){
+		var options = {
+			root: __dirname + '/server/'
+		};
+		res.sendFile('./index.html', options);
+	});
+
+	io.on('connection', function(socket){
+	  //console.log('a user connected');
+	  //io.emit('magic', 'Hi there!');
+	});
+
+	http.listen(port, function(){
+		console.log('listening on http://localhost:'+port);
+	});
+
+}
 
 
 

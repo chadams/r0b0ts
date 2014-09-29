@@ -28,6 +28,7 @@ var UserCommands = function(tracking, room, raffle, ticketing, config){
 	this.bot_nick = config.twitch.nickname;
 	this.megabotLevels = config.megabotLevels;
 	this.subscriptionLevels = config.subscriptionLevels;
+	this.cooldown = config.settings.cooldown || 1;
 };
 util.inherits(UserCommands, EventEmitter);
 
@@ -81,16 +82,22 @@ UserCommands.prototype._runCustomFunction = function(funName, cmd, val1, val2, v
 				return; // no access to command
 			}
 		}
+		var data = _.extend({
+			val1:val1,
+			val2:val2,
+			val3:val3,
+			title:self.getUserLevel(user.nick)
+		}, command, user);
 		if(command.response){
 			var template = _.template(command.response);
-			var data = _.extend({
-				val1:val1,
-				val2:val2,
-				val3:val3,
-				title:self.getUserLevel(user.nick)
-			}, user);
 			//console.log(data, template(data));
 			this.room.say(template(data));
+		}
+		if(command.gfx && user.cooldown <= 0){
+			if(!_.contains(this.admins, cmd.user.username)){
+				user.cooldown = self.cooldown;
+			}
+			self.emit('magic', data);
 		}
 		return;
 	}

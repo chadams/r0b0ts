@@ -13,6 +13,7 @@ var userSchema = {
 	mega_rate:60, // in minutes
 	subscription:0, // in dollars
 	time:0, // the tick time
+	cooldown:0, // cooldown time on magic
 	level:0,
 };
 
@@ -64,6 +65,9 @@ Tracking.prototype.tick = function(diff){
 
 		if(user.time % nb_rate === 0){
 			user.nanobots++;
+			if(user.cooldown > 0){
+				user.cooldown--;
+			}
 		}
 		if(user.time % mb_rate === 0){
 			user.megabots++;

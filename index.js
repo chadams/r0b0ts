@@ -1,6 +1,7 @@
 var config = require('./config');
 var repl = require('repl');
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var _ = require('lodash');
@@ -79,10 +80,14 @@ followers.on('follow', function(user, gift){
 
 
 userCommands.on('cmd', function(args){
-	console.log(args);
+	//console.log(args);
 	args.shift(); // remove cmd
 	var result = executeFunction(globalCommands, args.join(' '), replServer.context);
 	console.log(result);
+});
+
+userCommands.on('magic', function(args){
+	io.emit('magic', args);
 });
 
 // start the room
@@ -144,6 +149,9 @@ var exitApplication = function(){
 var globalCommands = {
 	help: function(){
 		return 'help doc';
+	},
+	version: function(){
+		return 'version 1.0';
 	},
 	exit: function(){
 	  return exitApplication();
@@ -336,12 +344,7 @@ var replServer = repl.start({
 if(config.server && config.server.port){
 	var port = config.server.port;
 
-	app.get('/', function(req, res){
-		var options = {
-			root: __dirname + '/server/'
-		};
-		res.sendFile('./index.html', options);
-	});
+	app.use(express.static(__dirname + '/server'));
 
 	io.on('connection', function(socket){
 	  //console.log('a user connected');

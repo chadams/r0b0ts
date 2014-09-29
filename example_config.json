@@ -24,11 +24,16 @@
 	},
 	"settings":{
 		"newFollowNanobots":100,
-		"delay":6
+		"delay":6,
+		"cooldown":10
 	},
 	"commands":{
 		"!toaster":{
 			"response":"<%= nick %> the <%= title %> says, \"Ding!\"",
+			"minMegabotLevel":1
+		},
+		"!test":{
+			"gfx":"images/angryseal.gif",
 			"minMegabotLevel":1
 		},
 		"!roomba":{

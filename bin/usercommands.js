@@ -82,6 +82,12 @@ UserCommands.prototype._runCustomFunction = function(funName, cmd, val1, val2, v
 				return; // no access to command
 			}
 		}
+		if(command.minSubscriptionLevel !== undefined && command.minSubscriptionLevel !== null){
+			if(user.subscription < command.minSubscriptionLevel || (!_.contains(this.admins, cmd.user.username) && command.adminOnly)){
+				//console.log('no access to command', user.level, command.level, _.contains(this.admins, cmd.user.username));
+				return; // no access to command
+			}
+		}
 		var data = _.extend({
 			val1:val1,
 			val2:val2,

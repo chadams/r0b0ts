@@ -154,11 +154,18 @@ Tracking.prototype.unwatchUser = function(nick){
 };
 
 Tracking.prototype.saveUser = function(nick){
+	var deferred = q.defer();
 	var self = this;
 	nick = nick.toLowerCase();
 	// save the user
 	var user = self.getUser(nick);
-	self.db.update({_id:nick}, user);
+	self.db.update({_id:nick}, user, {}, function(err, num, doc){
+		if(err){
+			return deferred.reject(err);
+		}
+		return deferred.resolve(doc);
+	});
+	return deferred.promise;
 };
 
 
@@ -203,11 +210,13 @@ Tracking.prototype.viewUser = function(nick, cb){
 };
 
 
-Tracking.prototype.saveAllUsers = function(cb){
+Tracking.prototype.saveAllUsers = function(){
 	var self = this;
+	var funcs = [];
 	_.forEach(self.users, function(doc){
-		self.db.update({_id:doc._id}, doc, {}, cb);
+		funcs.push(self.saveUser(doc.nick));
 	});
+	return funcs.reduce(q.when, q({}));
 };
 
 Tracking.prototype.isWatchingUser = function(nick){
@@ -289,13 +298,14 @@ Tracking.prototype._adjust = function(nick, prop, amount){
 
 Tracking.prototype.compact = function(cb){
 	var self = this;
-	self.saveAllUsers(function(err, res){
+	self.saveAllUsers()
+	.then(function(){
 		self.db.persistence.compactDatafile();
 		if(cb){
 			setTimeout(function(){
 				cb(null, null)
 			}, 1000);
-		}
+		}		
 	});
 	
 };

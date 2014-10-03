@@ -64,6 +64,7 @@ UserCommands.prototype.exec = function(user, channel, msg){
 UserCommands.prototype._runCustomFunction = function(funName, cmd, val1, val2, val3){
 	var self = this;
 	var user = this.tracking.getUser(cmd.user.username);
+	var template, out;
 	var command = _.find(this.commands, function(obj, indx){
 		return indx === '!'+funName;
 	});
@@ -92,21 +93,35 @@ UserCommands.prototype._runCustomFunction = function(funName, cmd, val1, val2, v
 			val1:val1,
 			val2:val2,
 			val3:val3,
+			command:funName,
 			title:self.getUserLevel(user.nick)
 		}, command, user);
 		if(command.response){
-			var template = _.template(command.response);
+			template = _.template(command.response);
 			//console.log(data, template(data));
-			this.room.say(template(data));
+			self.room.say(template(data));
 		}
-		if(command.gfx && user.cooldown <= 0){
-			if(!_.contains(this.admins, cmd.user.username)){
-				user.cooldown = self.cooldown;
+
+
+		if(command.gfx){
+			if(_.contains(this.admins, cmd.user.username)){
+				user.cooldown = 0; //  so admins can have unlimited magic
 			}
-			self.emit('magic', data);
+			//console.log(data);
+			if(user.cooldown <= 0){
+				user.cooldown = self.cooldown;
+				self.emit('magic', data);
+				out = _.template('<%= nick %>: - cast "<%= command %>"')(data);
+				self.room.action(out);
+			}else{
+				out = _.template('<%= nick %>: - magic on cooldown (<%= cooldown %> min)')(data);
+				self.room.say(out);
+			}
 		}
+
 		return;
-	}
+	}// end command
+
 };
 
 

@@ -55,22 +55,25 @@ Tracking.prototype.tick = function(diff){
 
 		var nb_rate = ((user.nano_rate + self.nanobot_adjust) *min);
 		var mb_rate = ((user.mega_rate + self.megabot_adjust) *min);
+		var cooldown_rate = min;
 
 		// adjust rate based off subscription
 		if(subscription_level){
-			mb_rate = Math.round(mb_rate * subscription_level.rate);
+			mb_rate = ((subscription_level.rate + self.megabot_adjust) *min);
 		}
 
 
-
-		if(user.time % nb_rate === 0){
-			user.nanobots++;
+		if(user.time % cooldown_rate === 0){
 			if(user.cooldown > 0){
 				user.cooldown--;
 			}
 		}
+		if(user.time % nb_rate === 0){
+			user.nanobots++;
+		}
 		if(user.time % mb_rate === 0){
 			user.megabots++;
+			//console.log(user.nick, 'git a megabot', mb_rate);
 			// see if anyone gained a level
 			_.forEach(self.config.megabotLevels, function(val, indx){
 				if(val === user.megabots && val > 10){

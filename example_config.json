@@ -56,12 +56,12 @@
 		"Transformer":8000
 	},
 	"subscriptionLevels":{
-		"Shiny":{"amount":2, "rate":0.1},
-		"Clever":{"amount":5, "rate":0.2},
-		"Killer":{"amount":10, "rate":0.4},
-		"Freaking Amazing":{"amount":25, "rate":0.6},
-		"Ultimate Supreme":{"amount":50, "rate":0.8},
-		"Robot God":{"amount":250, "rate":1}
+		"Shiny":{"amount":2, "rate":60},
+		"Clever":{"amount":5, "rate":50},
+		"Killer":{"amount":10, "rate":40},
+		"Freaking Amazing":{"amount":25, "rate":30},
+		"Ultimate Supreme":{"amount":50, "rate":20},
+		"Robot God":{"amount":250, "rate":5}
 	},
 	"messages":{
 		"minutes":5,

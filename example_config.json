@@ -25,7 +25,8 @@
 	"settings":{
 		"newFollowNanobots":100,
 		"delay":6,
-		"cooldown":10
+		"cooldown":10,
+		"welcomeSubscriptionMin": 5
 	},
 	"commands":{
 		"!toaster":{
@@ -35,7 +36,8 @@
 		"!test":{
 			"gfx":"images/angryseal.gif",
 			"pause":3,
-			"minMegabotLevel":1
+			"minMegabotLevel":1,
+			"sound":"sounds/syfy.mp3"
 		},
 		"!roomba":{
 			"response":"<%= nick %> the <%= title %> says, \"Out of my way!\"",

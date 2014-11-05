@@ -29,11 +29,57 @@
 
       .repeated-messages.ng-leave.ng-leave-active {
         opacity:0;
-      }      
+      }   
+
+      .welcome{
+        color: white; /* font color */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+        -webkit-transition:.5s linear all;
+        transition:.5s linear all;
+      }   
+
+      .welcome .card{
+        width: 600px;
+        margin: 100px auto 30px auto;
+        padding:200px 0px 15px 0px;
+        background-color: rgba(0,0,0,.8);
+        position: relative;
+      }
+
+      .welcome .greeting{position:absolute; top:10px; width: 100%;}
+      .welcome .title, .welcome .name, .welcome .greeting{text-align: center;}
+      .welcome h3, .welcome h1{margin:0; padding:0;}
+
+      .welcome.ng-hide{
+        opacity: 0;
+      }
+
+
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
 
     </style>
   </head>
-  <body ng-controller="MagicController as ctrl">
+  <body ng-controller="MagicController as ctrl" ng-cloak>
+
+    <div class="welcome" ng-hide="ctrl.welcomeShow">
+      <div class="card">
+        <div class="greeting">
+          <img style="width:100%;" src="images/worship.png">
+        </div>
+        <div class="title"><h3>Robot master{{ctrl.welcomeUser.title}}</h3></div>
+        <div class="name"><h1>Chad Adams{{ctrl.welcomeUser.nick}}</h1></div>
+      </div>
+    </div>
 
     <ul id="messages">
       <magic host="ctrl.messages", msg="message" class="repeated-messages" ng-repeat="message in ctrl.messages">
@@ -46,10 +92,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.3.0-rc.3/angular-animate.min.js"></script>
     <script src="magic.js"></script>
-    <script>
-
-
-    </script>
+    <script src="angular.audio.js"></script>
 
   </body>
 </html>

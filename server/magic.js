@@ -1,5 +1,7 @@
-angular.module('magic', ['ngAnimate'])
+angular.module('magic', ['ngAnimate', 'ngAudio'])
 	.controller('MagicController', function($scope, $timeout){
+
+		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 4;
 
 		var ctrl = this;
 
@@ -11,15 +13,35 @@ angular.module('magic', ['ngAnimate'])
       });
     });
 
+    socket.on('welcome', function(obj){
+      $scope.$apply(function(){
+      	ctrl.welcome(obj);
+      });
+    });
+
 
 		ctrl.messages = [];
+		ctrl.welcomeShow = false;
+		var welcomeTimer;
 
 		ctrl.magic = function(msg){
 			ctrl.messages.push(msg);
 		};
 
+		ctrl.welcome = function(obj){
+			console.log(obj);
+			ctrl.welcomeUser = obj;
+			ctrl.welcomeShow = true;
+			if(welcomeTimer){
+				$timeout.cancel(welcomeTimer);
+			}
+			welcomeTimer = $timeout(function(){
+				ctrl.welcomeShow = false;
+			}, SECONDS_TO_SHOW_WELCOME_MESSAGE*1000);
+		};
+
 	})
-	.directive('magic', function($timeout){
+	.directive('magic', function($timeout, ngAudio){
 		return {
 			restrict:'E'
 			,transclude:true
@@ -45,6 +67,12 @@ angular.module('magic', ['ngAnimate'])
 						messages.splice(indx, 1);
 					}
 				}, pause);
+
+				// play any sounds
+				if(msg.sound){
+					ngAudio.play(msg.sound);
+				}
+				
 
 			}
 		};

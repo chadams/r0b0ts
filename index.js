@@ -37,6 +37,10 @@ room.on('join', function(nick){
 		if(gameloop.running && config.messages.welcome){
 			sendMessage(config.messages.welcome, _.extend({}, {name:config.name}, doc), 'action');
 		}
+		if(gameloop.running && doc.subscription >= config.settings.welcomeSubscriptionMin){
+			var title = userCommands.getUserLevel(doc.nick);
+			io.emit('welcome', _.extend({}, {title:title}, doc));
+		}
 	});
 });
 room.on('part', function(nick){

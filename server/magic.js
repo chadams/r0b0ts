@@ -2,6 +2,7 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 	.controller('MagicController', function($scope, $timeout){
 
 		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 6;
+		var GLOBAL_SOUND_VOLUME = 0.5;
 
 		var ctrl = this;
 
@@ -70,7 +71,8 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 
 				// play any sounds
 				if(msg.sound){
-					ngAudio.play(msg.sound);
+					var snd = ngAudio.play(msg.sound);
+					snd = GLOBAL_SOUND_VOLUME;
 				}
 				
 

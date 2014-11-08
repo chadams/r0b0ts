@@ -3,6 +3,7 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 
 		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 6;
 		var GLOBAL_SOUND_VOLUME = 0.5;
+		var WELCOME_SOUND = "sounds/welcome.mp3";
 
 		var ctrl = this;
 
@@ -30,7 +31,6 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 		};
 
 		ctrl.welcome = function(obj){
-			console.log(obj);
 			ctrl.welcomeUser = obj;
 			ctrl.welcomeShow = true;
 			if(welcomeTimer){
@@ -39,6 +39,11 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 			welcomeTimer = $timeout(function(){
 				ctrl.welcomeShow = false;
 			}, SECONDS_TO_SHOW_WELCOME_MESSAGE*1000);
+
+			// play any sounds
+			var snd = ngAudio.play(WELCOME_SOUND);
+			snd.volume = GLOBAL_SOUND_VOLUME;
+
 		};
 
 	})

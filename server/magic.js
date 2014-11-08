@@ -1,5 +1,5 @@
 angular.module('magic', ['ngAnimate', 'ngAudio'])
-	.controller('MagicController', function($scope, $timeout){
+	.controller('MagicController', function($scope, $timeout, ngAudio){
 
 		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 6;
 		var GLOBAL_SOUND_VOLUME = 0.5;

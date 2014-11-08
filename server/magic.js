@@ -72,7 +72,7 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 				// play any sounds
 				if(msg.sound){
 					var snd = ngAudio.play(msg.sound);
-					snd = GLOBAL_SOUND_VOLUME;
+					snd.volume = GLOBAL_SOUND_VOLUME;
 				}
 				
 

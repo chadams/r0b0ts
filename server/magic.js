@@ -1,7 +1,7 @@
 angular.module('magic', ['ngAnimate', 'ngAudio'])
 	.controller('MagicController', function($scope, $timeout){
 
-		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 4;
+		var SECONDS_TO_SHOW_WELCOME_MESSAGE = 6;
 
 		var ctrl = this;
 

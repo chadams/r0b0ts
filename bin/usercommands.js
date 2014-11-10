@@ -29,6 +29,7 @@ var UserCommands = function(tracking, room, raffle, ticketing, config){
 	this.megabotLevels = config.megabotLevels;
 	this.subscriptionLevels = config.subscriptionLevels;
 	this.cooldown = config.settings.cooldown || 1;
+	this.nanobotToMegabotConversion = config.settings.nanobotToMegabotConversion || 200;
 };
 util.inherits(UserCommands, EventEmitter);
 
@@ -230,6 +231,40 @@ UserCommands.prototype.command_level = function(cmd){
 };
 
 
+// buys megabots with nanobots
+UserCommands.prototype.command_buy = function(cmd, quantity){
+	var self = this;
+	var template;
+
+	var nick = cmd.user.username;
+	var user = this.tracking.getUser(nick);
+
+
+	if(!quantity){
+		return;
+	}
+
+	quantity = +quantity;
+	if(isNaN(quantity)){
+		// bad number entered
+		return;
+	}
+	if(quantity <= 0){
+		return;// negative not allowed!
+	}
+
+	var maxPurchase = Math.floor(user.nanobots / this.nanobotToMegabotConversion);
+	var quantity = Math.min(quantity, maxPurchase);
+
+	user.nanobots = user.nanobots - (this.nanobotToMegabotConversion * quantity);
+	user.megabots = user.megabots + quantity;
+
+	template = _.template('<%= nick %> bought <%= quantity %> megabots: (<%= megabots %>/<%= nanobots %>)');
+	this.room.say(template(_.extend({
+		quantity:quantity
+	}, user)));
+
+};
 
 
 // action: add | rm | set

@@ -30,6 +30,7 @@ var UserCommands = function(tracking, room, raffle, ticketing, config){
 	this.subscriptionLevels = config.subscriptionLevels;
 	this.cooldown = config.settings.cooldown || 1;
 	this.nanobotToMegabotConversion = config.settings.nanobotToMegabotConversion || 200;
+	this.settings = config.settings;
 };
 util.inherits(UserCommands, EventEmitter);
 
@@ -56,6 +57,14 @@ UserCommands.prototype.exec = function(user, channel, msg){
 		// see if it's a custom command here
 		parts.unshift(funName);
 		return this._runCustomFunction.apply(this, parts);
+	}
+
+	// transform nanobots and megabots names
+	if(this.settings.nanobotsAreCalled && funName === this.settings.nanobotsAreCalled){
+		funName = 'nanobots';
+	}
+	if(this.settings.megabotsAreCalled && funName === this.settings.megabotsAreCalled){
+		funName = 'megabots';
 	}
 
 	return this['command_'+funName].apply(this, parts);

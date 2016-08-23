@@ -22,7 +22,7 @@ npm-debug.log
 
 _public
 import
-config.json
+config/production.json
 
 test/test-results.xml
 

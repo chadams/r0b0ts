@@ -83,7 +83,7 @@
 
     <ul id="messages">
       <magic host="ctrl.messages", msg="message" class="repeated-messages" ng-repeat="message in ctrl.messages">
-        <p><strong>{{message.nick}}</strong> - {{message.title}}</p>
+        <p><strong>{{message.user.username}}</strong> - {{message.action}}</p>
         <img ng-src="{{message.gfx}}">
       </magic>
     </ul>

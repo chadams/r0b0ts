@@ -1,0 +1,83 @@
+{
+	"settings": {
+		"panel":{
+			"delimiter":"r0b0ts:"
+		},
+		"roll":{
+			"min-xp":10
+		},
+		"apis":{
+			"chuck":{
+				"endpoint":"https://api.chucknorris.io/jokes/random",
+				"path":"value",
+				"min-xp":1,
+				"message":"<%= value %>"
+			},
+			"ron":{
+				"endpoint":"http://ron-swanson-quotes.herokuapp.com/v2/quotes",
+				"path":"[0]",
+				"min-xp":1,
+				"message":"<%= value %> - Ron Swanson"
+			}
+		},
+		"audience":{
+			"dataSaveInterval":10
+		},
+		"raffle":{},
+		"magic":{
+			"port": 3000,
+			"spells":{
+				"test":{ "gfx":"images/awesome00.gif", "pause":3, "min-xp":1}
+			}
+		},
+		"commands":{
+			"prefix":"!"
+		},
+		"levels":[
+			{"name":"Creeper", "xp":0},
+			{"name":"Newb", "xp":3},
+			{"name":"Interested", "xp":180}
+		],
+		"titles":{
+			"0": {"name":"", "xp-boost":0},
+			"1": {"name":"Mega", "xp-boost":0.1},
+			"2": {"name":"Ultra", "xp-boost":0.5}
+		},
+		"messages":{
+			"__list":[
+				{
+					"when":"every 5 min",
+					"what":[
+						"message one",
+						"another, message two",
+						"a third for good measure"
+					]
+				}
+			]
+		},
+		"twitch":{
+			"options":{
+				"debug":false
+			},
+			"connection":{
+				"cluster": "aws",
+				"reconnect":true
+			},
+			"identity":{
+		    "username": "the_r0b0t_army",
+		    "password": "oauth:ewrwer",
+		    "clientID": "sdfsdfsdfsdfsf"
+		  },
+		  "channel":"r0b0ts"
+		},
+		"strings":{
+			"raffle.start":"Starting a raffle for <%= amount %> xp! type !raffle to enter.",
+			"raffle.stop":"The raffle has ended. Good luck!",
+			"raffle.winner":"And the winner is... <%= username %>!!! you just won <%= amount %> xp!",
+			"roll":"<%= username %> rolled <%= dice %> = <%= resultText %>",
+			"audience.give":"<%= username %> was given <%= amount %> <%= given %>",
+			"audience.about":"<%= fulltitle %> <%= user.username %> (XP:<%= user.xp %>)",
+			"audience.levelup":"LEVELED UP!: <%= fulltitle %> <%= user.username %>"
+		}
+	}
+}

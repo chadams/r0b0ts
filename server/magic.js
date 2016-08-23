@@ -60,7 +60,7 @@ angular.module('magic', ['ngAnimate', 'ngAudio'])
 
 				var messages = scope.host;
 				var msg = scope.msg;
-				var pause = msg.pause ? msg.pause*1000 : 2000;
+				var pause = msg.pause ? msg.pause*1000 : 3000;
 
 				$timeout(function(){
 					var indx;

@@ -31,7 +31,8 @@
 			}
 		},
 		"commands":{
-			"prefix":"!"
+			"prefix":"!",
+			"admins":["chadams_bal"]
 		},
 		"levels":[
 			{"name":"Creeper", "xp":0},

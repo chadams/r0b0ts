@@ -10,7 +10,9 @@ vorpal.delimiter(vorpalConfig.delimiter).show()
 function vorpalCatch(e){vorpal.log(e)}
 function log(msg){vorpal.log(msg)}
 
-var AdminCommands = function(){} 
+var AdminCommands = function(){
+  this.vorpal = vorpal
+} 
 util.inherits(AdminCommands, EventEmitter)
 AdminCommands.prototype.log = log;
 AdminCommands.prototype.sendCommand = function(commandName, args){

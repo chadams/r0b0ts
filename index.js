@@ -24,7 +24,6 @@ adminCommands.on('raffle', function(params){
   raffle[params.args.action](params.args)
 })
 adminCommands.on('give', function(params){
-  log(params)
   audience.giveUser(params.args.username, params.args.options)
 })
 adminCommands.on('users', function(params){
@@ -39,6 +38,9 @@ userCommands.on('roll', function(params){
 })
 userCommands.on('me', function(params){
   audience.aboutUser(params.user.username)
+})
+userCommands.on('admin', function(params){
+  adminCommands.vorpal.exec(params.params.join(' '))
 })
 userCommands.on('command', function(params){
   var user = audience.getUser(params.user.username)

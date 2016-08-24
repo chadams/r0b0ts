@@ -163,8 +163,8 @@ Audience.prototype.giveUser = function(username, stuff){
   var self = this
   var user = this.getUser(username)
   if(!user){return}
-  _.forOwn(stuff, function(val, key){
-    if(user[key]){
+  _.forIn(stuff, function(val, key){
+    if(!_.isNil(user[key])){
       // handle number value
       if(_.indexOf(['xp', 'gold', 'time', 'cooldown']) >= 0){
 

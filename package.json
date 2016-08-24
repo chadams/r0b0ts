@@ -4,10 +4,11 @@
   "description": "Command line app for adminining twitch bot",
   "main": "index.js",
   "scripts": {
-    "windows": "set NODE_ENV=production && node index.js",
-    "mac": "export NODE_ENV=production && node index.js",
-    "start": "node index.js",
-    "test": "node index.js"
+    "windows": "set NODE_ENV=production && npm run start-app",
+    "mac": "export NODE_ENV=production && npm run start-app",
+    "start": "npm run mac",
+    "start-app": "node index.js",
+    "test": "npm run start-app"
   },
   "author": "Chad",
   "license": "ISC",

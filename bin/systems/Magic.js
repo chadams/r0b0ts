@@ -6,7 +6,7 @@ var moment = require('moment')
 var path = require('path');
 var fs = require('fs')
 var tools = require('../tools')
-var appDir = path.dirname(__dirname);
+var appDir = require('app-root-path')
 
 var magicConfig = config.get('settings.magic')
 

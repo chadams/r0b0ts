@@ -36,7 +36,7 @@
 		"levels":[
 			{"name":"Creeper", "xp":0},
 			{"name":"Newb", "xp":3},
-			{"name":"Interested", "xp":180}
+			{"name":"Interested", "xp":180000}
 		],
 		"titles":{
 			"0": {"name":"", "xp-boost":0},

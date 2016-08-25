@@ -166,7 +166,7 @@ Audience.prototype.giveUser = function(username, stuff){
   _.forIn(stuff, function(val, key){
     if(!_.isNil(user[key])){
       // handle number value
-      if(_.indexOf(['xp', 'gold', 'time', 'cooldown']) >= 0){
+      if(_.indexOf(['xp', 'gold', 'time', 'cooldown'], key) >= 0){
 
         var newAmount = +val;
         var currentAmount = user[key];
@@ -176,11 +176,15 @@ Audience.prototype.giveUser = function(username, stuff){
         }
         user[key] = amount
 
-      }else if(_.indexOf(['title']) >= 0){
+        var obj = _.extend({}, user, {user:user, given:key, amount:val})
+        self.emit('give', obj)                
+
+      }else if(_.indexOf(['title'], key) >= 0){
         user[key] = val
+        var obj = _.extend({}, user, {user:user, given:key, amount:val})
+        self.emit('give', obj)
       }
-      var obj = _.extend({}, user, {user:user, given:key, amount:val})
-      self.emit('give', obj)
+
     }
   })
 }

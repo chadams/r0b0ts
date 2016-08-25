@@ -10,13 +10,13 @@
 			"chuck":{
 				"endpoint":"https://api.chucknorris.io/jokes/random",
 				"path":"value",
-				"min-xp":1,
+				"min-xp":10000,
 				"message":"<%= value %>"
 			},
 			"ron":{
 				"endpoint":"http://ron-swanson-quotes.herokuapp.com/v2/quotes",
 				"path":"[0]",
-				"min-xp":1,
+				"min-xp":10000,
 				"message":"<%= value %> - Ron Swanson"
 			}
 		},

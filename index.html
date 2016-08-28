@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>R0b0ts Twitch Bot by chadams</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>R0b0ts Twitch Bot</h1>
+        <h2>Twitch Chat Bot Advanced - Messages, Raffles, Onscreen animated overlays</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/chadams/r0b0ts/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/chadams/r0b0ts/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/chadams/r0b0ts" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="twitch-chat-bot-with-magic" class="anchor" href="#twitch-chat-bot-with-magic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Twitch Chat bot with <em>MAGIC</em>
+</h1>
+
+<h3>
+<a id="rotating-messages" class="anchor" href="#rotating-messages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rotating messages</h3>
+
+<p>(CRON formats excepted, rotate messages on specific days)</p>
+
+<h3>
+<a id="raffles" class="anchor" href="#raffles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Raffles!</h3>
+
+<p>automatically give users XP when they win</p>
+
+<h3>
+<a id="dice-roller" class="anchor" href="#dice-roller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dice roller</h3>
+
+<p>!roll 2d20</p>
+
+<h3>
+<a id="add-commands-that-pull-from-any-json-endpoint" class="anchor" href="#add-commands-that-pull-from-any-json-endpoint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>add commands that pull from any JSON endpoint</h3>
+
+<p>(examples include "chuck norris, and ron swanson quotes"
+"!ron" or "!chuck"</p>
+
+<h3>
+<a id="user-levels-with-auto-level-up-notifications" class="anchor" href="#user-levels-with-auto-level-up-notifications" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>user levels with auto level up notifications</h3>
+
+<p>users will get 1 XP every minute</p>
+
+<h3>
+<a id="easily-administered-via-the-command-line-interface" class="anchor" href="#easily-administered-via-the-command-line-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>easily administered via the command line interface</h3>
+
+<ul>
+<li>clone the repo</li>
+<li>"npm install"</li>
+<li>add a "config/production.json" file to override "default.json" settings</li>
+<li>"npm run mac" or "npm run windows"</li>
+</ul>
+
+<h3>
+<a id="magic---user-commands-spells-system-for-streaming-magic" class="anchor" href="#magic---user-commands-spells-system-for-streaming-magic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAGIC - user commands (spells) system for streaming magic!</h3>
+
+<p>Users can type in commands such as "!hello" and an animated gif will appear in video the stream. 
+It's very easy to add, just edit the config and add in the following code to the "magic-&gt;spells" area</p>
+
+<pre><code>"hello":{ "gfx":"images/hello.gif", "pause":3, "min-xp":1},
+</code></pre>
+
+<p>min-xp is the minimum XP required to cast the spell. All spells have a 60 second cooldown. once added, put the image into the "images" folder, and point OBS to the local webserver created </p>
+
+<ul>
+<li>more coming soon. please post suggestions or questions</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>

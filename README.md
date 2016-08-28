@@ -1,5 +1,7 @@
 # Twitch Chat bot with *MAGIC*
 
+http://chadams.github.io/r0b0ts/
+
 ### Rotating messages 
 (CRON formats excepted, rotate messages on specific days)
 

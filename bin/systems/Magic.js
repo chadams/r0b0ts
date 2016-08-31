@@ -57,7 +57,7 @@ Magic.prototype.cast = function(user, action, payload){
 	}
 	io.emit('magic', out);	
 	// put user on cooldown
-	user.cooldown = 60
+	user.cooldown = 15
 	return true
 }
 

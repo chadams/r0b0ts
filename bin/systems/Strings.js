@@ -24,10 +24,10 @@ function runTemplate(id, data){
 module.exports = function(logger){
 
 	return {
-		log: function(id, data){
+		log: function(id, data, extra){
 			var val = runTemplate(id, data)
 			if(val && logger){
-				logger(val)
+				logger(val, extra)
 			}
 			return val
 		},

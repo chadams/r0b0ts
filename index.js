@@ -17,7 +17,9 @@ var messages = systems.Messages()
 var apis = systems.APIMessages()
 var log = adminCommands.log
 var say = twitch.say.bind(twitch)
-var strings = systems.Strings(say).log
+var whisper = twitch.whisper.bind(twitch)
+var strings_say = systems.Strings(say).log
+var strings_whisper = systems.Strings(whisper).log
 var strings_log = systems.Strings(log).log
 
 adminCommands.on('raffle', function(params){
@@ -45,7 +47,7 @@ userCommands.on('admin', function(params){
 userCommands.on('command', function(params){
   var user = audience.getUser(params.user.username)
   var magicCasted = magic.cast(user, params.action, params)
-  if(magicCasted){strings('magic.cast', params)}
+  if(magicCasted){strings_say('magic.cast', params, user.username)}
   apis.get(params)
   .then(function(msg){
     say(msg)
@@ -74,28 +76,35 @@ twitch.on('chat', function(obj){
 })
 
 
+magic.on('magic.cantuse', function(params){
+  strings_say('magic.cantuse', params)
+})
+magic.on('magic.cooldown', function(params){
+  strings_say('magic.cooldown', params)
+})
+
 audience.on('give', function(params){
-  strings('audience.give', params)
+  strings_say('audience.give', params)
   strings_log('audience.give', params)
 })
 audience.on('about', function(params){
-  strings('audience.about', params)
+  strings_say('audience.about', params)
 })
 audience.on('levelup', function(params){
-  strings('audience.levelup', params)
+  strings_say('audience.levelup', params)
 })
 
 
 raffle.on('start', function(params){
-  strings('raffle.start', params)
+  strings_say('raffle.start', params)
 })
 raffle.on('stop', function(params){
-  strings('raffle.stop', params)
+  strings_say('raffle.stop', params)
 })
 raffle.on('winner', function(params){
   var user = audience.getUser(params.username)
   user.xp += +params.amount
-  strings('raffle.winner', params)
+  strings_say('raffle.winner', params)
 })
 
 
@@ -105,7 +114,7 @@ messages.on('message', function(params){
 
 
 roll.on('roll', function(params){
-  strings('roll', _.extend(params, params.user))
+  strings_say('roll', _.extend(params, params.user))
 })
 
 gameLoop.on('tick', function(diff){

@@ -26,6 +26,7 @@
 		"raffle":{},
 		"magic":{
 			"port": 3000,
+			"cooldown":15,
 			"spells":{
 				"test":{ "gfx":"images/awesome00.gif", "pause":3, "min-xp":1}
 			}
@@ -78,7 +79,10 @@
 			"roll":"<%= username %> rolled <%= dice %> = <%= resultText %>",
 			"audience.give":"<%= username %> was given <%= amount %> <%= given %>",
 			"audience.about":"<%= fulltitle %> <%= user.username %> (XP:<%= user.xp %>)",
-			"audience.levelup":"LEVELED UP!: <%= fulltitle %> <%= user.username %>"
+			"audience.levelup":"LEVELED UP!: <%= fulltitle %> <%= user.username %>",
+			"magic.cast":"<%= user.username %> casted spell <%= action %>",
+			"magic.cantuse":"<%= user.username %>, You don't have that spell yet",
+			"magic.cooldown":"<%= user.username %>, Your spells are on cooldown (<%= user.cooldown %> sec)"
 		}
 	}
 }

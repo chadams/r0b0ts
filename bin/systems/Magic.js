@@ -12,6 +12,7 @@ var magicConfig = config.get('settings.magic')
 
 var port = magicConfig.port
 var spells = magicConfig.spells
+var cooldown = magicConfig.cooldown
 
 
 var express = require('express');
@@ -47,17 +48,25 @@ Magic.prototype.start = function(params){
 Magic.prototype.cast = function(user, action, payload){
 	// see if the spell exists
 	var spell = spells[action]
-	if(!spell){return}
-	var canuse = tools.caniuse(user, spell)
-	if(!canuse){return}
 	var out = _.extend({}, {user:user, action:action}, spell, payload)
+	if(!spell){
+		this.emit('magic.nospell', out)
+		return
+	}
+	var canuse = tools.caniuse(user, spell)
+	if(!canuse){
+		this.emit('magic.cantuse', out);
+		return
+	}
+	
 	if(user.cooldown > 0){
-		this.emit('cooldown', out)
+		this.emit('magic.cooldown', out)
 		return
 	}
 	io.emit('magic', out);	
+	this.emit('magic.cast', out)
 	// put user on cooldown
-	user.cooldown = 15
+	user.cooldown = cooldown
 	return true
 }
 

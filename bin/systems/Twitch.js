@@ -62,6 +62,10 @@ Twitch.prototype.say = function(message){
   if(!this.connected){return}
   client.say(channel, message)
 }
+Twitch.prototype.whisper = function(message, username){
+  if(!this.connected){return}
+  client.whisper(username, message)
+}
 
 var twitch = new Twitch
 

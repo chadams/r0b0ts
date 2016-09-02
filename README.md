@@ -1,6 +1,8 @@
 # Twitch Chat bot with *MAGIC*
-
 http://chadams.github.io/r0b0ts/
+
+r0b0ts is an interactive fully customizable Twitch chat bot. Mainly used for tracking viewer experience (1XP per minute) and granting special "spells" for users at specific levels promoting viewer loyality. "Spells" are chat commands like "!hello" that will show an animated gif on the twitch live stream. 
+
 
 ### Rotating messages 
 (CRON formats excepted, rotate messages on specific days)

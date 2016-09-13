@@ -71,7 +71,7 @@ var twitch = new Twitch
 
 // listen for events
 client.on("chat", function (channel, userstate, message, self) {
-    if (self) return;// Don't listen to my own messages..
+    //if (self) return;// Don't listen to my own messages..
     twitch.emit('chat.raw', {channel:channel, userstate:userstate, message:message})
     twitch.emit('chat', {channel:channel, username:userstate.username, message:message})
 });

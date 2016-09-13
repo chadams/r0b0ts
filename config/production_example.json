@@ -1,0 +1,145 @@
+{
+	"settings": {
+
+		"panel":{
+			"delimiter":"r0b0ts:"
+		},
+
+		"magic":{
+			"spells":{
+				"hello":{ "gfx":"images/hello.gif", "pause":3, "min-xp":1},
+				"win":{ "gfx":"images/win.gif", "pause":4, "min-xp":15},
+				"fail1":{ "gfx":"images/fail1.gif", "pause":3, "min-xp":75},
+				"pew1":{ "gfx":"images/pew1.gif", "pause":3, "min-xp":75},
+				"onward":{ "gfx":"images/onward.gif", "pause":4, "min-xp":144},
+				"catchit":{ "gfx":"images/catchit.gif", "pause":4, "min-xp":223},
+				"evil":{ "gfx":"images/evil.gif", "pause":4, "min-xp":315},
+				"dance1":{ "gfx":"images/dance1.gif", "pause":3, "min-xp":315},
+				"later":{ "gfx":"images/later.gif", "pause":12, "min-xp":420},
+				"takethat":{ "gfx":"images/takethat.gif", "pause":4, "min-xp":540},
+				"sad1":{ "gfx":"images/sad1.gif", "pause":3, "min-xp":679},
+				"happy1":{ "gfx":"images/happy1.gif", "pause":3, "min-xp":679},
+				"love":{ "gfx":"images/love.gif", "pause":3, "min-xp":839},
+				"goal":{ "gfx":"images/goal.gif", "pause":3, "min-xp":1022},
+				"pew2":{ "gfx":"images/pew2.gif", "pause":3, "min-xp":1022},
+				"rollin":{ "gfx":"images/rollin.gif", "pause":3, "min-xp":1233},
+				"omg":{ "gfx":"images/omg.gif", "pause":3, "min-xp":1476},
+				"fail2":{ "gfx":"images/fail2.gif", "pause":3, "min-xp":1755},
+				"trippy":{ "gfx":"images/trippy.gif", "pause":3, "min-xp":1755},
+				"goal2":{ "gfx":"images/goal2.gif", "pause":3, "min-xp":2076},
+				"crush":{ "gfx":"images/crush.gif", "pause":3, "min-xp":2445},
+				"what":{ "gfx":"images/what.gif", "pause":3, "min-xp":2445},
+				"shocking":{ "gfx":"images/shocking.gif", "pause":3, "min-xp":2870},
+				"stabby":{ "gfx":"images/stabby.gif", "pause":5, "min-xp":3358},
+				"dance2":{ "gfx":"images/dance2.gif", "pause":3, "min-xp":3920},
+				"luigi":{ "gfx":"images/luigi.gif", "pause":3, "min-xp":3920},
+				"serious":{ "gfx":"images/serious.gif", "pause":6, "min-xp":4565},
+				"angry":{ "gfx":"images/angry.gif", "pause":3, "min-xp":5308},
+				"rad":{ "gfx":"images/rad.gif", "pause":3, "min-xp":5308},
+				"shark":{ "gfx":"images/shark.gif", "pause":4, "min-xp":6162},
+				"bored":{ "gfx":"images/bored.gif", "pause":3, "min-xp":7144},
+				"laser":{ "gfx":"images/laser.gif", "pause":4, "min-xp":8273},
+				"brick":{ "gfx":"images/brick.gif", "pause":7, "min-xp":8273},
+				"distract":{ "gfx":"images/distract.gif", "pause":4, "min-xp":9572},
+				"fail3":{ "gfx":"images/fail3.gif", "pause":3, "min-xp":11065},
+				"snape":{ "gfx":"images/snape.gif", "pause":3, "min-xp":11065},
+				"feelings":{ "gfx":"images/feelings.gif", "pause":3, "min-xp":12783},
+				"imcool":{ "gfx":"images/imcool.gif", "pause":3, "min-xp":14758},
+				"slam":{ "gfx":"images/slam.gif", "pause":4, "min-xp":17029},
+				"dump":{ "gfx":"images/dump.gif", "pause":3, "min-xp":19641},
+				"heythere":{ "gfx":"images/heythere.gif", "pause":3, "min-xp":22645},
+				"fail4":{ "gfx":"images/fail4.gif", "pause":3, "min-xp":22645},
+				"shiny":{ "gfx":"images/shiny.gif", "pause":3, "min-titles":["1"]},
+				"tea":{ "gfx":"images/tea.gif", "pause":3, "min-titles":["1"]},
+				"clever":{ "gfx":"images/clever.gif", "pause":3, "min-titles":["1","2"]},
+				"imout":{ "gfx":"images/imout.gif", "pause":3, "min-titles":["1","2"]},
+				"killer":{ "gfx":"images/killer.gif", "pause":3, "min-titles":["1","2","3"]},
+				"poke":{ "gfx":"images/poke.gif", "pause":3, "min-titles":["1","2","3"]},
+				"amazing":{ "gfx":"images/amazing.gif", "pause":3, "min-titles":["1","2","3","4"]},
+				"score":{ "gfx":"images/score.gif", "pause":3, "min-titles":["1","2","3","4"]},
+				"ultimate":{ "gfx":"images/ultimate.gif", "pause":3, "min-titles":["1","2","3","4","5"]},
+				"chop":{ "gfx":"images/chop.gif", "pause":3, "min-titles":["1","2","3","4","5"]},
+				"god":{ "gfx":"images/god.gif", "pause":3, "min-titles":["1","2","3","4","5","6"]}
+			}
+		},
+		"commands":{
+			"admins":["chadams_bal","the_r0b0t_army"]
+		},
+		"levels":[
+			{"name":"Level 0 Bot", "xp":0},
+			{"name":"Level 1 Bot", "xp":15},
+			{"name":"Level 2 Bot", "xp":75},
+			{"name":"Level 3 Bot", "xp":144},
+			{"name":"Level 4 Bot", "xp":223},
+			{"name":"Level 5 Bot", "xp":315},
+			{"name":"Level 6 Bot", "xp":420},
+			{"name":"Level 7 Bot", "xp":540},
+			{"name":"Level 8 Bot", "xp":679},
+			{"name":"Level 9 Bot", "xp":839},
+			{"name":"Level 10 Bot", "xp":1022},
+			{"name":"Level 11 Bot", "xp":1233},
+			{"name":"Level 12 Bot", "xp":1476},
+			{"name":"Level 13 Bot", "xp":1755},
+			{"name":"Level 14 Bot", "xp":2076},
+			{"name":"Level 15 Bot", "xp":2445},
+			{"name":"Level 16 Bot", "xp":2870},
+			{"name":"Level 17 Bot", "xp":3358},
+			{"name":"Level 18 Bot", "xp":3920},
+			{"name":"Level 19 Bot", "xp":4565},
+			{"name":"Level 20 Bot", "xp":5308},
+			{"name":"Level 21 Bot", "xp":6162},
+			{"name":"Level 22 Bot", "xp":7144},
+			{"name":"Level 23 Bot", "xp":8273},
+			{"name":"Level 24 Bot", "xp":9572},
+			{"name":"Level 25 Bot", "xp":11065},
+			{"name":"Level 26 Bot", "xp":12783},
+			{"name":"Level 27 Bot", "xp":14758},
+			{"name":"Level 28 Bot", "xp":17029},
+			{"name":"Level 29 Bot", "xp":19641},
+			{"name":"Level 30 Bot", "xp":22645}			
+		],
+		"titles":{
+			"0": {"name":"", "xp-boost":0},
+			"1": {"name":"Shiny", "xp-boost":1},
+			"2": {"name":"Clever", "xp-boost":2},
+			"3": {"name":"Killer", "xp-boost":3},
+			"4": {"name":"Freaking Amazing", "xp-boost":4},
+			"5": {"name":"Ultimate Supreme", "xp-boost":5},
+			"6": {"name":"God", "xp-boost":7}
+		},
+		"messages":{
+			"list":[
+				{
+					"when":"every 5 min",
+					"what":[
+						"Next Week - Will from Encounter Rollplay will be our guest! Don't miss it. http://twitch.tv/encounterroleplay",
+						"Want to change a roll to a 20 or 1? Donate $5 or more: https://twitch.streamlabs.com/r0b0ts",
+						"Follow & Retweet us on twitter! @robots_radio @thedireleague",
+						"Want to help the show? Tell a friend! Let's all be buddies.",
+						"!admin raffle start 100",
+						"!admin raffle draw",
+						"Tuesdays 1pm - Tom is a vampire guest w/ Encounter Rollplay. http://twitch.tv/encounterroleplay",
+						"Get your name in our D&D adventure, chat with the cast, & get member's access on robotsradio.net. These are all rewards for subscribing at http://patreon.com/r0b0ts"
+					]
+				}
+			]
+		},
+		"twitch":{
+			"identity":{
+		    "username": "the_r0b0t_army",
+		    "password": "oauth:<password>",
+		    "clientID": "<clientID>"
+		  },
+		  "channel":"r0b0ts"
+		},
+		"strings":{
+			"raffle.start":"Starting a raffle for <%= amount %> xp! type !raffle to enter.",
+			"raffle.stop":"The raffle has ended. Good luck!",
+			"raffle.winner":"And the winner is... <%= username %>!!! you just won <%= amount %> xp!",
+			"roll":"<%= username %> rolled <%= dice %> = <%= resultText %>",
+			"audience.give":"<%= username %> was given <%= amount %> <%= given %>",
+			"audience.about":"<%= fulltitle %> <%= user.username %> (XP:<%= user.xp %>)",
+			"audience.levelup":"LEVELED UP!: <%= fulltitle %> <%= user.username %>"
+		}
+	}
+}

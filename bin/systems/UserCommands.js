@@ -22,7 +22,7 @@ UserCommands.prototype.compileCommand = function(user, commandStr){
 	var action = parts.shift()
 	action = action.toLowerCase()
 	var out = {user:user, action:action, params:parts, text:commandStr, prefix:prefix}
-	if(action === 'cmd' && _.indexOf(userCommandsConfig.admins, user.username) >= 0){
+	if((action === 'cmd' || action === 'admin') && _.indexOf(userCommandsConfig.admins, user.username) >= 0){
 		return this.emit('admin', out)
 	}
 	this.emit('command', out)
